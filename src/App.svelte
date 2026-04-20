@@ -40,6 +40,7 @@
         const origEmpty = emptyPos;
         blocks[size - 1][size - 1] = blocks[x][y];
         blocks[x][y] = origEmpty;
+        blocks = blocks; // make derived array update
       }
     }
     console.log(blocks);
