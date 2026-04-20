@@ -10,8 +10,8 @@
     handleClick: (args: {x: number, y: number})=>any;
   };
   const { x, y, size, blocks, showNum, handleClick }: Props = $props();
-  let movedX = $derived(blocks[x][y].x);
-  let movedY = $derived(blocks[x][y].y);
+  let posX = $derived(blocks[x][y].x);
+  let posY = $derived(blocks[x][y].y);
   let empty = $derived(blocks[x][y].empty);
 </script>
 
@@ -20,8 +20,8 @@
   onclick={()=>{
     handleClick({x, y});
   }}
-  style:grid-row={movedY + 1}
-  style:grid-column={movedX + 1}
+  style:grid-row={posY + 1}
+  style:grid-column={posX + 1}
   style:background-color={empty ? "#b1b1b1" : "white"}
   style:box-shadow={empty ? "none" : "2px 2px 0.3em rgb(181, 181, 181)"}
 >
