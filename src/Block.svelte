@@ -20,8 +20,8 @@
   onclick={()=>{
     handleClick({x, y});
   }}
-  style:grid-row={y + 1}
-  style:grid-column={x + 1}
+  style:grid-row={movedY + 1}
+  style:grid-column={movedX + 1}
   style:background-color={empty ? "#b1b1b1" : "white"}
   style:box-shadow={empty ? "none" : "2px 2px 0.3em rgb(181, 181, 181)"}
 >
@@ -30,8 +30,8 @@
   {:else}
     <div
       class="img"
-      style:top="{(-movedY * 30) / size}em"
-      style:left="{(-movedX * 30) / size}em"
+      style:top="{(-x * 30) / size}em"
+      style:left="{(-y * 30) / size}em"
     >
       <img src="./nanoka.png" alt="nnk" />
     </div>
