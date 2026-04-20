@@ -11,6 +11,7 @@
   import Block from "./Block.svelte";
 
   let size = $state(3);
+  let showNum = $state(false);
   let blocks = $derived.by(() => {
     const obj: BlocksConfig = {};
     for (let x = 0; x < size; x++) {
@@ -28,9 +29,10 @@
 <BigBorder {size}>
   {#each { length: size }, y}
     {#each { length: size }, x}
-      <Block {x} {y} {size} {blocks} />
+      <Block {x} {y} {size} {blocks} {showNum} --margin="{0.75 / size}em" />
     {/each}
   {/each}
 </BigBorder>
 
-<label> 大小<input bind:value={size} /></label>
+<label>大小<input bind:value={size} /></label>
+<label>显示数字<input type="checkbox" bind:checked={showNum} /></label>

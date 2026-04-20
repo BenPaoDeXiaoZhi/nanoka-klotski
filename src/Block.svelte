@@ -6,14 +6,15 @@
     y: number;
     size: number;
     blocks: BlocksConfig;
+    showNum: boolean;
   };
-  const { x, y, size, blocks }: Props = $props();
+  const { x, y, size, blocks, showNum }: Props = $props();
   let movedX = $derived(blocks[x][y].x);
   let movedY = $derived(blocks[x][y].y);
   let empty = $derived(blocks[x][y].empty);
 </script>
 
-<div
+<button
   class="block"
   style:grid-row={y + 1}
   style:grid-column={x + 1}
@@ -31,21 +32,28 @@
       <img src="./nanoka.png" alt="nnk" />
     </div>
   {/if}
-</div>
+  {#if showNum}
+    <b>{y * size + x + 1}</b>
+  {/if}
+</button>
 
 <style>
-  div.block {
-    width: calc(100% - 0.5em);
+  button.block {
+    position: relative;
+    width: calc(100% - var(--margin) * 2);
     aspect-ratio: 1;
-    margin: 0.25em;
-    border-radius: 0.5em;
+    margin: var(--margin);
+    border-radius: calc(var(--margin) * 2);
     overflow: hidden;
+    padding: 0px;
+    border: none;
+    font-size: 1em;
   }
 
   div.hole {
     width: 100%;
     aspect-ratio: 1;
-    border-radius: 0.5em;
+    border-radius: calc(var(--margin) * 2);
     box-shadow: inset 1px 1px 0.5em 0px rgb(97, 97, 97);
   }
 
@@ -56,6 +64,15 @@
   }
 
   img {
-    height: 30em;
+    width: 30em;
+    aspect-ratio: 1;
+  }
+
+  b {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+    color: white;
   }
 </style>
