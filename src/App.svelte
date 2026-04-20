@@ -3,6 +3,9 @@
     number,
     Record<number, { x: number; y: number; empty?: boolean }>
   >;
+  export type Pos = { x: number; y: number; };
+
+  const { abs } = Math;
 </script>
 
 <script lang="ts">
@@ -29,12 +32,35 @@
     y: size - 1,
   });
 
-  function handleClick(args: {
+  function getBlock(pos: Pos){
+    const {x,y} = pos;
+    return blocks[x][y];
+  }
+
+  function setBlock(pos: Pos, movedPos: Pos){
+    const {x,y} = pos;
+    blocks[x][y] = movedPos;
+    blocks[x][y].empty = false;
+  }
+
+  function setEmpty(pos: Pos){
+    const {x,y} = pos;
+    blocks[x][y].empty = true;
+    emptyPos = pos;
+  }
+
+  function handleClick(pos: {
     x: number,
     y: number,
   }){
-    const {x, y} = args;
-    console.log(args, emptyPos);
+    console.log(pos, emptyPos);
+    if(pos.x == emptyPos.x){
+      if(abs(emptyPos.x - pos.x) == 1){
+        const moved = getBlock(pos);
+        setBlock(emptyPos, moved);
+        setEmpty(pos);
+      }
+    }
   }
 </script>
 
