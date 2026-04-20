@@ -33,9 +33,14 @@
     x: number,
     y: number,
   }){
-    {
-      const {x,y}=picPos;
-      console.log(y*size+x+1);
+    const {x,y}=picPos;
+    console.log(y*size+x+1);
+    if(emptyPos.x == x){
+      if(abs(emptyPos.y - y)==1){
+        const origEmpty = emptyPos;
+        block[size - 1][size - 1] = block[x][y];
+        block[x][y] = origEmpty;
+      }
     }
     console.log(blocks);
   }
