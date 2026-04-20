@@ -54,8 +54,17 @@
     y: number,
   }){
     console.log(pos, emptyPos);
-    if(pos.x == emptyPos.x){
+    if(pos.y == emptyPos.y){
+      console.log("moveX");
       if(abs(emptyPos.x - pos.x) == 1){
+        const moved = getBlock(pos);
+        setBlock(emptyPos, moved);
+        setEmpty(pos);
+      }
+    }
+    if(pos.x == emptyPos.x){
+      console.log("moveY");
+      if(abs(emptyPos.y - pos.y) == 1){
         const moved = getBlock(pos);
         setBlock(emptyPos, moved);
         setEmpty(pos);
