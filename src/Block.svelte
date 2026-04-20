@@ -31,9 +31,9 @@
     >
       <img src="./nanoka.png" alt="nnk" />
     </div>
-  {/if}
-  {#if showNum}
-    <b>{y * size + x + 1}</b>
+    {#if showNum}
+      <b>{y * size + x + 1}</b>
+    {/if}
   {/if}
 </button>
 
@@ -73,6 +73,7 @@
     top: 0px;
     left: 0px;
     z-index: 5;
+    font-size: calc(var(--margin) * 12);
     color: white;
   }
 </style>
