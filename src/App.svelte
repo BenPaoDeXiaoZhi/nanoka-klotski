@@ -26,7 +26,7 @@
     return obj;
   });
 
-  let emptyPos: Pos = $derived(block[size - 1][size - 1]);
+  let emptyPos: Pos = $derived(blocks[size - 1][size - 1]);
 
 
   function handleClick(picPos: {
@@ -38,8 +38,8 @@
     if(emptyPos.x == x){
       if(abs(emptyPos.y - y)==1){
         const origEmpty = emptyPos;
-        block[size - 1][size - 1] = block[x][y];
-        block[x][y] = origEmpty;
+        blocks[size - 1][size - 1] = blocks[x][y];
+        blocks[x][y] = origEmpty;
       }
     }
     console.log(blocks);
