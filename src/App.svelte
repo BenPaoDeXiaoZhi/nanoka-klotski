@@ -70,6 +70,7 @@
         setEmpty(pos);
       }
     }
+    console.log(blocks);
   }
 </script>
 
