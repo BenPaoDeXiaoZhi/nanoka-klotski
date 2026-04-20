@@ -23,13 +23,26 @@
     obj[size - 1][size - 1].empty = true;
     return obj;
   });
+
+  let emptyPos = $derived({
+    x: size - 1,
+    y: size - 1,
+  });
+
+  function handleClick(args: {
+    x: number,
+    y: number,
+  }){
+    const {x, y} = args;
+    console.log(args, emptyPos);
+  }
 </script>
 
 <Header />
 <BigBorder {size}>
   {#each { length: size }, y}
     {#each { length: size }, x}
-      <Block {x} {y} {size} {blocks} {showNum} --margin="{0.75 / size}em" />
+      <Block {x} {y} {size} {blocks} {showNum} {handleClick} --margin="{0.75 / size}em" />
     {/each}
   {/each}
 </BigBorder>
