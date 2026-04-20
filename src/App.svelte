@@ -1,7 +1,7 @@
 <script lang="ts" module>
   export type BlocksConfig = Record<
     number,
-    Record<number, { x: number; y: number; empty?: boolean }>
+    Record<number, Pos>
   >;
   export type Pos = { x: number; y: number; };
 
@@ -23,52 +23,19 @@
         obj[x][y] = { x, y };
       }
     }
-    obj[size - 1][size - 1].empty = true;
     return obj;
   });
 
-  let emptyPos = $derived({
-    x: size - 1,
-    y: size - 1,
-  });
+  let emptyPos: Pos = $derived(block[size - 1][size - 1]);
 
-  function getBlock(pos: Pos){
-    const {x,y} = pos;
-    return blocks[x][y];
-  }
 
-  function setBlock(pos: Pos, movedPos: Pos){
-    const {x,y} = pos;
-    blocks[x][y] = movedPos;
-    blocks[x][y].empty = false;
-  }
-
-  function setEmpty(pos: Pos){
-    const {x,y} = pos;
-    blocks[x][y].empty = true;
-    emptyPos = pos;
-  }
-
-  function handleClick(pos: {
+  function handleClick(picPos: {
     x: number,
     y: number,
   }){
-    console.log(pos, emptyPos);
-    if(pos.y == emptyPos.y){
-      console.log("moveX");
-      if(abs(emptyPos.x - pos.x) == 1){
-        const moved = getBlock(pos);
-        setBlock(emptyPos, moved);
-        setEmpty(pos);
-      }
-    }
-    if(pos.x == emptyPos.x){
-      console.log("moveY");
-      if(abs(emptyPos.y - pos.y) == 1){
-        const moved = getBlock(pos);
-        setBlock(emptyPos, moved);
-        setEmpty(pos);
-      }
+    {
+      const {x,y}=picPos;
+      console.log(y*size+x+1);
     }
     console.log(blocks);
   }
