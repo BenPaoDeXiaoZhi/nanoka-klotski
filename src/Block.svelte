@@ -12,12 +12,13 @@
   const { x, y, size, blocks, showNum, handleClick }: Props = $props();
   let posX = $derived(blocks[x][y].x);
   let posY = $derived(blocks[x][y].y);
-  let empty = $derived(blocks[x][y].empty);
+  let empty = $derived((x==size-1)&&(y==size-1));
 </script>
 
 <button
   class="block"
   onclick={()=>{
+    if(empty) return;
     handleClick({x, y});
   }}
   style:grid-row={posY + 1}
