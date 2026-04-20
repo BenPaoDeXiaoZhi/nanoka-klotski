@@ -8,8 +8,8 @@
     blocks: BlocksConfig;
   };
   const { x, y, size, blocks }: Props = $props();
-  let originX = $derived(blocks[x][y].x);
-  let originY = $derived(blocks[x][y].y);
+  let movedX = $derived(blocks[x][y].x);
+  let movedY = $derived(blocks[x][y].y);
   let empty = $derived(blocks[x][y].empty);
 </script>
 
@@ -25,8 +25,8 @@
   {:else}
     <div
       class="img"
-      style:top="{(-originY * 30) / size}em"
-      style:left="{(-originX * 30) / size}em"
+      style:top="{(-movedY * 30) / size}em"
+      style:left="{(-movedX * 30) / size}em"
     >
       <img src="./nanoka.png" alt="nnk" />
     </div>
