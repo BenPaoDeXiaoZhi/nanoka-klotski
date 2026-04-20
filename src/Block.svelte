@@ -30,8 +30,8 @@
   {:else}
     <div
       class="img"
-      style:top="{(-x * 30) / size}em"
-      style:left="{(-y * 30) / size}em"
+      style:top="{(-y * 30) / size}em"
+      style:left="{(-x * 30) / size}em"
     >
       <img src="./nanoka.png" alt="nnk" />
     </div>
