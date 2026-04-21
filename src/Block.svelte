@@ -16,6 +16,13 @@
   let empty = $derived(id == size * size - 1);
 </script>
 
+<div class="hole"
+  style:width="{30 / size}em"
+  style:top="{y * 30 / size}em"
+  style:left="{x * 30 / size}em"
+></div>
+
+{#if !empty}
 <button
   class="block"
   onclick={() => {
@@ -30,9 +37,6 @@
     class="container"
     style:box-shadow={empty ? "none" : "2px 2px 0.3em rgb(181, 181, 181)"}
   >
-  {#if empty}
-    <div class="hole"></div>
-  {:else}
     <div
       class="img"
       style:top="{(-y * 30) / size}em"
@@ -43,9 +47,9 @@
     {#if showNum}
       <b>{id + 1}</b>
     {/if}
-  {/if}
   </div>
 </button>
+{/if}
 
 <style>
   button.block {
@@ -67,11 +71,13 @@
   }
 
   div.hole {
+    position: absolute;
     width: 100%;
     aspect-ratio: 1;
     border-radius: calc(var(--margin) * 2);
     background-color: #b1b1b1;
     box-shadow: inset 1px 1px 0.5em 0px rgb(97, 97, 97);
+    z-index: 2;
   }
 
   div.img {
@@ -83,6 +89,7 @@
   img {
     width: 30em;
     aspect-ratio: 1;
+    z-index: 3;
   }
 
   b {
