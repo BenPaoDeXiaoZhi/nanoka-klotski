@@ -51,7 +51,6 @@
   button.block {
     position: absolute;
     aspect-ratio: 1;
-    padding: var(--margin);;
     border: none;
     font-size: 1em;
     transition: 0.1s;
@@ -59,6 +58,7 @@
   }
 
   .container {
+    margin: var(--margin);
     aspect-ratio: 1;
     width: calc(100% - var(--margin) * 2);
     border-radius: calc(var(--margin) * 2);
