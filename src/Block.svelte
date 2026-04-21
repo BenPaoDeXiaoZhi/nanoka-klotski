@@ -32,9 +32,9 @@
     class="container"
     style:box-shadow={empty ? "none" : "2px 2px 0.3em rgb(181, 181, 181)"}
   >
-  {if empty}
+  {#if empty}
     <div class="hole"></div>
-  {#else}
+  {:else}
     <div
       class="img"
       style:top="{(-y * 30) / size}em"
