@@ -31,5 +31,6 @@
     position: relative;
     top: 0.5em;
     left: 0.5em;
+    z-index: 1;
   }
 </style>
