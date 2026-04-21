@@ -19,7 +19,7 @@
     width: 31em;
     height: 31em;
     border-radius: 0.5em;
-    background-color: #e0e2e4;
+    background-color: red;
   }
 
   div .in {
