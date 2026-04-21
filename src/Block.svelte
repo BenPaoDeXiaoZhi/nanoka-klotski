@@ -63,6 +63,7 @@
     width: calc(100% - var(--margin) * 2);
     border-radius: calc(var(--margin) * 2);
     overflow: hidden;
+    position: relative;
   }
 
   div.hole {
