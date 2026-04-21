@@ -25,9 +25,11 @@
   style:width="{30 / size}em"
   style:top="{posY * 30 / size}em"
   style:left="{posX * 30 / size}em"
-  style:box-shadow={empty ? "none" : "2px 2px 0.3em rgb(181, 181, 181)"}
 >
-  <div class="container">
+  <div 
+    class="container"
+    style:box-shadow={empty ? "none" : "2px 2px 0.3em rgb(181, 181, 181)"}
+  >
   {#if empty}
     <div class="hole"></div>
   {:else}
