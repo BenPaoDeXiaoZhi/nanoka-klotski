@@ -25,7 +25,6 @@
   style:width="{30 / size}em"
   style:top="{posY * 30 / size}em"
   style:left="{posX * 30 / size}em"
-  style:background-color={empty ? "#b1b1b1" : "white"}
   style:box-shadow={empty ? "none" : "2px 2px 0.3em rgb(181, 181, 181)"}
 >
   <div class="container">
@@ -67,6 +66,7 @@
     width: 100%;
     aspect-ratio: 1;
     border-radius: calc(var(--margin) * 2);
+    background-color: #b1b1b1;
     box-shadow: inset 1px 1px 0.5em 0px rgb(97, 97, 97);
   }
 
