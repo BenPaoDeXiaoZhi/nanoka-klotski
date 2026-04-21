@@ -22,8 +22,9 @@
     if (empty) return;
     handleClick(id);
   }}
-  style:top="{posY * 30 / size}"
-  style:left="{posX * 30 / size}"
+  style:width="{30 / size}em"
+  style:top="{posY * 30 / size}em"
+  style:left="{posX * 30 / size}em"
   style:background-color={empty ? "#b1b1b1" : "white"}
   style:box-shadow={empty ? "none" : "2px 2px 0.3em rgb(181, 181, 181)"}
 >
@@ -48,7 +49,6 @@
 <style>
   button.block {
     position: absolute;
-    width: 10em;
     aspect-ratio: 1;
     padding: var(--margin);;
     border: none;
