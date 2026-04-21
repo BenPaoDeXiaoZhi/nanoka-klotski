@@ -2,27 +2,26 @@
   import type { BlocksConfig } from "./App.svelte";
 
   type Props = {
-    x: number;
-    y: number;
+    id: number;
     size: number;
     blocks: BlocksConfig;
     showNum: boolean;
-    handleClick: (args: {x: number, y: number})=>any;
+    handleClick: (id: number)=>any;
   };
-  const { x, y, size, blocks, showNum, handleClick }: Props = $props();
-  let posX = $derived(blocks[x][y].x);
-  let posY = $derived(blocks[x][y].y);
-  let empty = $derived((x==size-1)&&(y==size-1));
+  const { id, size, blocks, showNum, handleClick }: Props = $props();
+  let posX = $derived(blocks[id].x);
+  let posY = $derived(blocks[id].y);
+  let empty = $derived(id==size*size);
 </script>
 
 <button
   class="block"
   onclick={()=>{
     if(empty) return;
-    handleClick({x, y});
+    handleClick(id);
   }}
-  style:grid-row={posY + 1}
-  style:grid-column={posX + 1}
+  style:grid-row={(id - id % size) / size}
+  style:grid-column={id % size}
   style:background-color={empty ? "#b1b1b1" : "white"}
   style:box-shadow={empty ? "none" : "2px 2px 0.3em rgb(181, 181, 181)"}
 >
@@ -37,7 +36,7 @@
       <img src="./nanoka.png" alt="nnk" />
     </div>
     {#if showNum}
-      <b>{y * size + x + 1}</b>
+      <b>{id}</b>
     {/if}
   {/if}
 </button>
