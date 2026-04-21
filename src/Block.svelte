@@ -73,7 +73,7 @@
 
   div.hole {
     position: absolute;
-    width: 100%;
+    width: calc(100% - var(--margin) * 2);;
     aspect-ratio: 1;
     border-radius: calc(var(--margin) * 2);
     background-color: #b1b1b1;
