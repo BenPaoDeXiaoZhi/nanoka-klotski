@@ -46,7 +46,7 @@
 <BigBorder {size}>
   {#each { length: size * size }, id}
     <Block
-      {id}
+      id={id+1}
       {size}
       {blocks}
       {showNum}
