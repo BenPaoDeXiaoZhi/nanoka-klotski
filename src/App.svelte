@@ -33,7 +33,7 @@
     const { x, y } = blockPos;
     if (emptyPos.x == x) {
       if (abs(emptyPos.y - y) == 1) {
-        blocks[size * size] = blockPos;
+        blocks[size * size - 1] = blockPos;
         blocks[id] = emptyPos;
         blocks = Object.assign({}, blocks); // make derived update
       }
