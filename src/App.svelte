@@ -16,7 +16,7 @@
     const obj: BlocksConfig = {};
     for (let x = 0; x < size; x++) {
       for (let y = 0; y < size; y++) {
-        obj[y * size + x + 1] = { x, y };
+        obj[y * size + x] = { x, y };
       }
     }
     return obj;
@@ -46,7 +46,7 @@
 <BigBorder {size}>
   {#each { length: size * size }, id}
     <Block
-      id={id+1}
+      {id}
       {size}
       {blocks}
       {showNum}
