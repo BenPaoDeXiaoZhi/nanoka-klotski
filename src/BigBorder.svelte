@@ -18,6 +18,9 @@
     height: 30em;
     border-radius: 0.5em;
     background-color: #e0e2e4;
-    padding: 0.5em
+    padding: 0.5em;
+    position: relative;
+    top: 0px;
+    left: 0px;
   }
 </style>
