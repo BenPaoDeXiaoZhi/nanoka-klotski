@@ -6,22 +6,24 @@
     size: number;
     blocks: BlocksConfig;
     showNum: boolean;
-    handleClick: (id: number)=>any;
+    handleClick: (id: number) => any;
   };
   const { id, size, blocks, showNum, handleClick }: Props = $props();
   let posX = $derived(blocks[id].x);
   let posY = $derived(blocks[id].y);
-  let empty = $derived(id==size*size);
+  let x = $derived(id % size);
+  let y = $derived((id - (id % size)) / size);
+  let empty = $derived(id == size * size);
 </script>
 
 <button
   class="block"
-  onclick={()=>{
-    if(empty) return;
+  onclick={() => {
+    if (empty) return;
     handleClick(id);
   }}
-  style:grid-row={(id - id % size) / size}
-  style:grid-column={id % size}
+  style:grid-row={posY}
+  style:grid-column={posX}
   style:background-color={empty ? "#b1b1b1" : "white"}
   style:box-shadow={empty ? "none" : "2px 2px 0.3em rgb(181, 181, 181)"}
 >

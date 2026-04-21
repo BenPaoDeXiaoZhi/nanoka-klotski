@@ -1,6 +1,6 @@
 <script lang="ts" module>
   export type BlocksConfig = Record<number, Pos>;
-  export type Pos = { x: number; y: number; };
+  export type Pos = { x: number; y: number };
 
   const { abs } = Math;
 </script>
@@ -16,26 +16,26 @@
     const obj: BlocksConfig = {};
     for (let x = 0; x < size; x++) {
       for (let y = 0; y < size; y++) {
-        obj[y*size+x+1] = { x, y };
+        obj[y * size + x + 1] = { x, y };
       }
     }
     return obj;
   });
 
-  let emptyPos: Pos = $derived(blocks[size*size]);
+  let emptyPos: Pos = $derived(blocks[size * size]);
 
-  function getBlock(id: number){
+  function getBlock(id: number) {
     return blocks[id];
   }
 
-  function handleClick(id: number){
+  function handleClick(id: number) {
     const blockPos = getBlock(id);
-    const {x,y} = blockPos;
-    if(emptyPos.x == x){
-      if(abs(emptyPos.y - y)==1){
-        blocks[size*size] = blockPos;
+    const { x, y } = blockPos;
+    if (emptyPos.x == x) {
+      if (abs(emptyPos.y - y) == 1) {
+        blocks[size * size] = blockPos;
         blocks[id] = emptyPos;
-        blocks = Object.assign({},blocks); // make derived update
+        blocks = Object.assign({}, blocks); // make derived update
       }
     }
     console.log(blocks);
@@ -44,8 +44,15 @@
 
 <Header />
 <BigBorder {size}>
-  {#each { length: size*size}, y}
-      <Block {id} {size} {blocks} {showNum} {handleClick} --margin="{0.75 / size}em" />
+  {#each { length: size * size }, id}
+    <Block
+      {id}
+      {size}
+      {blocks}
+      {showNum}
+      {handleClick}
+      --margin="{0.75 / size}em"
+    />
   {/each}
 </BigBorder>
 
