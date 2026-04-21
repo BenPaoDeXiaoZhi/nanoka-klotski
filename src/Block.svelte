@@ -45,8 +45,8 @@
     {#if showNum}
       <b>{id + 1}</b>
     {/if}
-  </div>
   {/if}
+  </div>
 </button>
 
 <style>
