@@ -8,20 +8,17 @@
   const { children, size }: Props = $props();
 </script>
 
-<div
-  style:grid-template-columns="repeat({size}, auto)"
-  style:grid-template-rows="repeat({size}, auto)"
->
+<div>
   {@render children()}
 </div>
 
 <style>
   div {
-    width: 30em;
-    display: grid;
+    width: 31em;
+    position: relative;
     aspect-ratio: 1;
     border-radius: 0.5em;
     background-color: #e0e2e4;
-    padding: 0.25em;
+    padding: 0.5em;
   }
 </style>
