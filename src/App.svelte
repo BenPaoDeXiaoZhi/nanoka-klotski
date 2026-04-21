@@ -28,15 +28,27 @@
     return blocks[id];
   }
 
-  function handleClick(id: number) {
-    const blockPos = getBlock(id);
-    const { x, y } = blockPos;
+  function canMove(pos: Pos){
+    const { x, y } = pos;
     if (emptyPos.x == x) {
       if (abs(emptyPos.y - y) == 1) {
-        blocks[size * size - 1] = blockPos;
-        blocks[id] = emptyPos;
-        blocks = Object.assign({}, blocks); // make derived update
+        return true;
       }
+    }
+    if (emptyPos.y == y) {
+      if (abs(emptyPos.x - x) == 1) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  function handleClick(id: number) {
+    const blockPos = getBlock(id);
+    if (canMove(blockPos)) {
+      blocks[size * size - 1] = blockPos;
+      blocks[id] = emptyPos;
+      blocks = Object.assign({}, blocks); // make derived update
     }
     console.log(blocks);
   }
