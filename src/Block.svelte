@@ -13,7 +13,7 @@
   let posY = $derived(blocks[id].y);
   let x = $derived(id % size);
   let y = $derived((id - (id % size)) / size);
-  let empty = $derived(id == size * size);
+  let empty = $derived(id == size * size - 1);
 </script>
 
 <button
@@ -38,7 +38,7 @@
       <img src="./nanoka.png" alt="nnk" />
     </div>
     {#if showNum}
-      <b>{id}</b>
+      <b>{id + 1}</b>
     {/if}
   {/if}
 </button>
@@ -54,6 +54,7 @@
     padding: 0px;
     border: none;
     font-size: 1em;
+    transition: 0.1s;
   }
 
   div.hole {
