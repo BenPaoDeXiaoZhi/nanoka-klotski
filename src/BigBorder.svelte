@@ -13,7 +13,7 @@
 </div>
 
 <style>
-  div.out {
+  div {
     width: 30em;
     height: 30em;
     border-radius: 0.5em;
