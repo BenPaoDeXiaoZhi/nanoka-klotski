@@ -15,14 +15,14 @@
 </div>
 
 <style>
-  div .out {
+  div.out {
     width: 31em;
     height: 31em;
     border-radius: 0.5em;
     background-color: red;
   }
 
-  div .in {
+  div.in {
     background-color: green;
     width: 30em;
     aspect-ratio: 1;
