@@ -28,18 +28,18 @@
 
   let emptyPos: Pos = $derived(blocks[size - 1][size - 1]);
 
+  function getBlock(picPos: Pos){
+    const {x,y} = picPos;
+    return blocks[x][y];
+  }
 
-  function handleClick(picPos: {
-    x: number,
-    y: number,
-  }){
-    const {x,y}=picPos;
-    console.log(y*size+x+1);
+  function handleClick(picPos: Pos){
+    const blockPos = getBlock(picPos);
+    const {x,y} = blockPos;
     if(emptyPos.x == x){
       if(abs(emptyPos.y - y)==1){
-        const origEmpty = emptyPos;
-        blocks[size - 1][size - 1] = blocks[x][y];
-        blocks[x][y] = origEmpty;
+        blocks[size - 1][size - 1] = blockPos;
+        blocks[x][y] = emptyPos;
         blocks = Object.assign({},blocks); // make derived update
       }
     }
