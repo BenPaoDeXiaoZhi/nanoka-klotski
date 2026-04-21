@@ -11,8 +11,8 @@
   const { id, size, blocks, showNum, handleClick }: Props = $props();
   let posX = $derived(blocks[id].x);
   let posY = $derived(blocks[id].y);
-  let x = $derived(id % size);
-  let y = $derived((id - (id % size)) / size);
+  let x = $derived((id - 1) % size + 1);
+  let y = $derived((id - (id % size)) / size + 1);
   let empty = $derived(id == size * size);
 </script>
 
