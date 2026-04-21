@@ -43,7 +43,7 @@
 </script>
 
 <Header />
-<BigBorder {size}>
+<BigBorder {size} --margin="{0.75 / size}em">
   {#each { length: size * size }, id}
     <Block
       {id}
@@ -51,7 +51,6 @@
       {blocks}
       {showNum}
       {handleClick}
-      --margin="{0.75 / size}em"
     />
   {/each}
 </BigBorder>
