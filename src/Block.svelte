@@ -59,6 +59,7 @@
     font-size: 1em;
     transition: 0.1s;
     background-color: transparent;
+    z-index: 3;
   }
 
   .container {
@@ -89,7 +90,6 @@
   img {
     width: 30em;
     aspect-ratio: 1;
-    z-index: 3;
   }
 
   b {
