@@ -22,11 +22,12 @@
     if (empty) return;
     handleClick(id);
   }}
-  style:grid-row={posY + 1}
-  style:grid-column={posX + 1}
+  style:top="{posY * 30 / size}"
+  style:left="{posX * 30 / size}"
   style:background-color={empty ? "#b1b1b1" : "white"}
   style:box-shadow={empty ? "none" : "2px 2px 0.3em rgb(181, 181, 181)"}
 >
+  <div class="container">
   {#if empty}
     <div class="hole"></div>
   {:else}
@@ -41,20 +42,25 @@
       <b>{id + 1}</b>
     {/if}
   {/if}
+  </div>
 </button>
 
 <style>
   button.block {
-    position: relative;
-    width: calc(100% - var(--margin) * 2);
+    position: absolute;
+    width: 10em;
     aspect-ratio: 1;
-    margin: var(--margin);
-    border-radius: calc(var(--margin) * 2);
-    overflow: hidden;
-    padding: 0px;
+    padding: var(--margin);;
     border: none;
     font-size: 1em;
     transition: 0.1s;
+  }
+
+  .container {
+    aspect-ratio: 1;
+    width: calc(100% - var(--margin) * 2);
+    border-radius: calc(var(--margin) * 2);
+    overflow: hidden;
   }
 
   div.hole {
