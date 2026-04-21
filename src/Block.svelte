@@ -55,6 +55,7 @@
     border: none;
     font-size: 1em;
     transition: 0.1s;
+    background-color: transparent;
   }
 
   .container {
