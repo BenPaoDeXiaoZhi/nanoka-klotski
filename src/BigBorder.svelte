@@ -19,16 +19,16 @@
     width: 31em;
     height: 31em;
     border-radius: 0.5em;
-    background-color: red;
+    background-color: #e0e2e4;
   }
 
   div.in {
-    background-color: green;
     width: 30em;
     aspect-ratio: 1;
     position: relative;
     top: 0.5em;
     left: 0.5em;
     z-index: 1;
+    background-color: #e0e2e4;
   }
 </style>
