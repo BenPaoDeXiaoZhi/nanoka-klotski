@@ -22,7 +22,7 @@
     return obj;
   });
 
-  let emptyPos: Pos = $derived(blocks[size * size]);
+  let emptyPos: Pos = $derived(blocks[size * size - 1]);
 
   function getBlock(id: number) {
     return blocks[id];
