@@ -20,10 +20,11 @@
     aspect-ratio: 1;
     border-radius: 0.5em;
     background-color: #e0e2e4;
-    padding: 0.5em;
   }
 
   div .in {
+    margin: 0.5em;
+    background-color: transparent;
     width: 30em;
     aspect-ratio: 1;
     position: relative;
