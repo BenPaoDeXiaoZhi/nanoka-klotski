@@ -18,10 +18,8 @@
   div .out {
     width: 31em;
     height: 31em;
-    aspect-ratio: 1;
     border-radius: 0.5em;
     background-color: #e0e2e4;
-    overflow: hidden;
   }
 
   div .in {
