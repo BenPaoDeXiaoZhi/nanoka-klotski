@@ -17,7 +17,6 @@
 </script>
 
 <div class="hole"
-  style:width="{30 / size}em"
   style:top="{y * 30 / size}em"
   style:left="{x * 30 / size}em"
 ></div>
