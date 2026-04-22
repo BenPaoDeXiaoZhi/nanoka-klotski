@@ -55,7 +55,7 @@
 </script>
 
 <Header />
-<BigBorder {size} --margin="{(30 / size) * 0.1}em">
+<BigBorder {size} --margin="{(30 / size) * 0.05}em">
   {#each { length: size * size }, id}
     <Block
       {id}
