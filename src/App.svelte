@@ -30,14 +30,12 @@
 
   function getId(pos: Pos){
     const {x,y} = pos;
-    return blocks.find((b)=>b.x==x && b.y==y) ?? -1;
+    return blocks.findIndex((b)=>b.x==x && b.y==y) ?? -1;
   }
 
   function nextTo(pos: Pos){
     const { x, y } = pos;
-    return 
-      abs(emptyPos.y - y) == 1 && 
-      abs(emptyPos.x - x) == 1;
+    return abs(emptyPos.y - y) == 1 && abs(emptyPos.x - x) == 1;
   }
 
   function sameLine(pos: Pos){
@@ -60,13 +58,13 @@
     const delta = emptyPos.y - y + emptyPos.x - x
     if(x==emptyPos.x){
       const next = y + delta / abs(delta);
-      const nextId = getId({x,next});
+      const nextId = getId({x,y:next});
       move(nextId);
       move(id);
     }
     if(y==emptyPos.y){
       const next = x + delta / abs(delta);
-      const nextId = getId({next,y});
+      const nextId = getId({x:next,y});
       move(nextId);
       move(id);
     }
