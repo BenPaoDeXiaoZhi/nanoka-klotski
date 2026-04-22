@@ -61,6 +61,7 @@
 <style>
   div.out {
     position: absolute;
+    padding: 0em;
   }
 
   div.hole {
