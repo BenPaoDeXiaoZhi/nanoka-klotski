@@ -52,6 +52,7 @@
     if(nextTo(blockPos)){
       blocks[size * size - 1] = blockPos;
       blocks[id] = emptyPos;
+      blocks = Array.from(blocks);
       return;
     }
     const {x,y}=blockPos;
