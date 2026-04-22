@@ -61,7 +61,7 @@
     }
     const {x,y}=blockPos;
     if(x==emptyPos.x){
-      for(let i=1;i<=abs(emptyPos.y-y);i++){
+      for(let i=1;i<=abs(emptyPos.y-y)+1;i++){
         const n = fn(emptyPos.y, y, i);
         const nextId = getId({x,y:n});
         move(nextId);
