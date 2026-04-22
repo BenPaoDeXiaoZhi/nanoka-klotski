@@ -61,7 +61,6 @@
   }
 
   .container {
-    margin: 10%;
     aspect-ratio: 1;
     width: 80%;
     border-radius: 10%;
