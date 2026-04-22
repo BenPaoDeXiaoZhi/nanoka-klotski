@@ -72,6 +72,6 @@
 
 <style>
 :root {
-  font-size: calc(95vw / 30);
+  font-size: calc(min(90vw, 90vh) / 30);
 }
 </style>
