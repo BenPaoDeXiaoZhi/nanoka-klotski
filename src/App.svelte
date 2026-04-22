@@ -74,7 +74,7 @@
     const blockPos = getBlock(id);
     if (sameLine(blockPos)) {
       move(id);
-      blocks = Object.assign({}, blocks); // make derived update
+      blocks = Array.from({}, blocks); // make derived update
     }
     console.log(blocks);
   }
