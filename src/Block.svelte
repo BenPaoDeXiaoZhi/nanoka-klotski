@@ -16,7 +16,11 @@
   let empty = $derived(id == size * size - 1);
 </script>
 
-
+<div class="out">
+  <div class="container">
+    <div class="hole"></div>
+  </div>
+</div>
 
 <button
   class="block"
@@ -33,7 +37,7 @@
     style:box-shadow={empty ? "none" : "2px 2px 0.3em rgb(181, 181, 181)"}
   >
   {#if empty}
-    <div class="hole"></div>
+    
   {:else}
     <div
       class="img"
@@ -50,6 +54,20 @@
 </button>
 
 <style>
+  div.out {
+    position: absolute;
+  }
+
+  div.hole {
+    position: absolute;
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 10%;
+    background-color: #b1b1b1;
+    box-shadow: inset 1px 1px 0.5em 0px rgb(97, 97, 97);
+    z-index: 2;
+  }
+
   button.block {
     position: absolute;
     aspect-ratio: 1;
@@ -68,16 +86,6 @@
     overflow: hidden;
     position: relative;
     margin: auto;
-  }
-
-  div.hole {
-    position: absolute;
-    width: 100%;
-    aspect-ratio: 1;
-    border-radius: 10%;
-    background-color: #b1b1b1;
-    box-shadow: inset 1px 1px 0.5em 0px rgb(97, 97, 97);
-    z-index: 2;
   }
 
   div.img {
