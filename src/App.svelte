@@ -1,5 +1,5 @@
 <script lang="ts" module>
-  export type BlocksConfig = Record<number, Pos>;
+  export type BlocksConfig = Pos[];
   export type Pos = { x: number; y: number };
 
   const { abs } = Math;
@@ -13,7 +13,7 @@
   let size = $state(3);
   let showNum = $state(false);
   let blocks = $derived.by(() => {
-    const obj: BlocksConfig = {};
+    const obj: BlocksConfig = [];
     for (let x = 0; x < size; x++) {
       for (let y = 0; y < size; y++) {
         obj[y * size + x] = { x, y };
@@ -28,26 +28,54 @@
     return blocks[id];
   }
 
-  function canMove(pos: Pos){
+  function getId(pos: Pos){
+    const {x,y} = pos;
+    return blocks.find((b)=>b.x==x && b.y==y);
+  }
+
+  function nextTo(pos: Pos){
     const { x, y } = pos;
-    if (emptyPos.x == x) {
-      if (abs(emptyPos.y - y) == 1) {
-        return true;
-      }
+    return 
+      abs(emptyPos.y - y) == 1) && 
+      abs(emptyPos.x - x) == 1;
+  }
+
+  function sameLine(pos: Pos){
+    const { x, y } = pos;
+    return emptyPos.x == x && emptyPos.y == y;
+  }
+
+  function move(id: number){
+    const blockPos = getBlock(id);
+    if(!sameLine(blockPos)){
+      console.error("err pos");
+      return;
     }
-    if (emptyPos.y == y) {
-      if (abs(emptyPos.x - x) == 1) {
-        return true;
-      }
+    if(nextTo(blockPos)){
+      blocks[size * size - 1] = blockPos;
+      blocks[id] = emptyPos;
+      return;
     }
-    return false;
+    const {x,y}=blockPos;
+    const delta = emptyPos.y - y + emptyPos.x - x
+    if(x==emptyPos.x){
+      const next = y + delta / abs(delta);
+      const nextId = getId({x,next});
+      move(nextId);
+      move(id);
+    }
+    if(y==emptyPos.y){
+      const next = x + delta / abs(delta);
+      const nextId = getId({next,y});
+      move(nextId);
+      move(id);
+    }
   }
 
   function handleClick(id: number) {
     const blockPos = getBlock(id);
-    if (canMove(blockPos)) {
-      blocks[size * size - 1] = blockPos;
-      blocks[id] = emptyPos;
+    if (sameLine(blockPos) && nextTo(blockPos)) {
+      move(id);
       blocks = Object.assign({}, blocks); // make derived update
     }
     console.log(blocks);
