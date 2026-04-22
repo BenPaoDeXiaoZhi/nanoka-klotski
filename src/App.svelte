@@ -43,6 +43,10 @@
     return emptyPos.x == x || emptyPos.y == y;
   }
 
+  function fn(a: number, b: number, l: number){
+    return a + (b - a) / abs(b - a) * l;
+  }
+
   function move(id: number){
     const blockPos = getBlock(id);
     if(!sameLine(blockPos)){
@@ -56,18 +60,12 @@
       return;
     }
     const {x,y}=blockPos;
-    const delta = emptyPos.y - y + emptyPos.x - x
     if(x==emptyPos.x){
-      const next = y + delta / abs(delta);
-      const nextId = getId({x,y:next});
-      move(nextId);
-      move(id);
-    }
-    if(y==emptyPos.y){
-      const next = x + delta / abs(delta);
-      const nextId = getId({x:next,y});
-      move(nextId);
-      move(id);
+      for(let i=1;i<=abs(emptyPos.y-y);i++){
+        const n = fn(emptyPos.y, y, i);
+        const nextId = getId({x,y:n});
+        move(nextId);
+      }
     }
   }
 
