@@ -62,7 +62,7 @@
 
   .container {
     aspect-ratio: 1;
-    width: 80%;
+    width: 100%;
     border-radius: 10%;
     overflow: hidden;
     position: relative;
