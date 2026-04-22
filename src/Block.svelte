@@ -16,7 +16,12 @@
   let empty = $derived(id == size * size - 1);
 </script>
 
-<div class="out">
+<div
+  class="out"
+  style:width="{30 / size}em"
+  style:top="{y * 30 / size}em"
+  style:left="{x * 30 / size}em"
+>
   <div class="container">
     <div class="hole"></div>
   </div>
