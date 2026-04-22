@@ -62,6 +62,7 @@
   div.out {
     position: absolute;
     padding: 0em;
+    aspect-ratio: 1;
   }
 
   div.hole {
@@ -91,7 +92,7 @@
     border-radius: 10%;
     overflow: hidden;
     position: relative;
-    margin: auto;
+    margin: 5%;
   }
 
   div.img {
