@@ -61,10 +61,10 @@
   }
 
   .container {
-    margin: var(--margin);
+    margin: 10%;
     aspect-ratio: 1;
-    width: calc(100% - var(--margin) * 2);
-    border-radius: calc(var(--margin) * 2);
+    width: 80%;
+    border-radius: 10%;
     overflow: hidden;
     position: relative;
   }
@@ -73,7 +73,7 @@
     position: absolute;
     width: 100%;
     aspect-ratio: 1;
-    border-radius: calc(var(--margin) * 2);
+    border-radius: 10%;
     background-color: #b1b1b1;
     box-shadow: inset 1px 1px 0.5em 0px rgb(97, 97, 97);
     z-index: 2;
@@ -95,7 +95,7 @@
     top: 0px;
     left: 0px;
     z-index: 5;
-    font-size: calc(var(--margin) * 12);
+    font-size: 40%;
     color: white;
   }
 </style>
