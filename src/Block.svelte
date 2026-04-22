@@ -43,7 +43,7 @@
       <img src="./nanoka.png" alt="nnk" />
     </div>
     {#if showNum}
-      <b>{id + 1}</b>
+      <b style:font-size="{12/size}em">{id + 1}</b>
     {/if}
   {/if}
   </div>
@@ -83,7 +83,7 @@
   div.img {
     width: 100%;
     aspect-ratio: 1;
-    position: relative;
+    position: absolute;
   }
 
   img {
@@ -96,7 +96,6 @@
     top: 0px;
     left: 0px;
     z-index: 5;
-    font-size: 40%;
     color: white;
   }
 </style>
