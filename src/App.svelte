@@ -35,12 +35,12 @@
 
   function nextTo(pos: Pos){
     const { x, y } = pos;
-    return abs(emptyPos.y - y) == 1 && abs(emptyPos.x - x) == 1;
+    return abs(emptyPos.y - y) == 1 || abs(emptyPos.x - x) == 1;
   }
 
   function sameLine(pos: Pos){
     const { x, y } = pos;
-    return emptyPos.x == x && emptyPos.y == y;
+    return emptyPos.x == x || emptyPos.y == y;
   }
 
   function move(id: number){
