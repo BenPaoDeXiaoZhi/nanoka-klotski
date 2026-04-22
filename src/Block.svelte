@@ -58,6 +58,7 @@
     transition: 0.1s;
     background-color: transparent;
     z-index: 3;
+    padding: 0em;
   }
 
   .container {
