@@ -69,3 +69,9 @@
 
 <label>大小<input bind:value={size} /></label>
 <label>显示数字<input type="checkbox" bind:checked={showNum} /></label>
+
+<style>
+:root {
+  font-size: calc(95vw / 30);
+}
+</style>
