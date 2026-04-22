@@ -30,13 +30,13 @@
 
   function getId(pos: Pos){
     const {x,y} = pos;
-    return blocks.find((b)=>b.x==x && b.y==y);
+    return blocks.find((b)=>b.x==x && b.y==y) ?? -1;
   }
 
   function nextTo(pos: Pos){
     const { x, y } = pos;
     return 
-      abs(emptyPos.y - y) == 1) && 
+      abs(emptyPos.y - y) == 1 && 
       abs(emptyPos.x - x) == 1;
   }
 
