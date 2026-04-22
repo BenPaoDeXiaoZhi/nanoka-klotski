@@ -72,7 +72,7 @@
 
   function handleClick(id: number) {
     const blockPos = getBlock(id);
-    if (sameLine(blockPos) && nextTo(blockPos)) {
+    if (sameLine(blockPos)) {
       move(id);
       blocks = Object.assign({}, blocks); // make derived update
     }
