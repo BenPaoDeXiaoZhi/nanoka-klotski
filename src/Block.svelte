@@ -63,10 +63,11 @@
 
   .container {
     aspect-ratio: 1;
-    width: 100%;
+    width: 90%;
     border-radius: 10%;
     overflow: hidden;
     position: relative;
+    margin: auto;
   }
 
   div.hole {
