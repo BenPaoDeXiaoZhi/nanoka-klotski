@@ -8,12 +8,14 @@
   const { children, size }: Props = $props();
 </script>
 
-<div>
-  {@render children()}
+<div class="out">
+  <div style="position:relative;">
+    {@render children()}
+  </div>
 </div>
 
 <style>
-  div {
+  .out {
     width: 30em;
     height: 30em;
     border-radius: 0.5em;
