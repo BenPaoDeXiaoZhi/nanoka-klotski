@@ -150,14 +150,14 @@
       move(id);
       blocks = Array.from(blocks); // make derived update
     }
-    if(verify){
+    if(verify()){
       alert("已复原");
     }
   }
 
   function verify(){
     return !blocks.find(
-      (pos, i) => pos.y * size + pos.x == i;
+      (pos, i) => pos.y * size + pos.x == i,
     );
   }
 </script>
