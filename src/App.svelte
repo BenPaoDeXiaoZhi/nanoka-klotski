@@ -39,11 +39,14 @@
   import BigBorder from "./BigBorder.svelte";
   import Header from "./Header.svelte";
   import Block from "./Block.svelte";
+  import Timer from "./Timer.svelte";
 
   let size = $state(3);
   let showNum = $state(false);
   let showShuffle = $state(false);
   let shuffling = $derived(false);
+  let start = $derived(false);
+  let timeStr = $state("");
   let blocks = $derived.by(() => {
     const obj: BlocksConfig = [];
     for (let x = 0; x < size; x++) {
@@ -101,6 +104,8 @@
 
   function shuffle() {
     shuffling = true;
+    start = false;
+    timeStr = "00:00:00.000";
     const times = size * size * randInt(1, 10);
     console.log(`将进行${times}次打乱`);
     const delay = showShuffle ? 10 : 0;
@@ -150,15 +155,18 @@
       move(id);
       blocks = Array.from(blocks); // make derived update
     }
-    if(verify()){
-      alert("已复原");
+    if (verify()) {
+      start = false;
+      setTimeout(
+        () =>
+          alert(`恭喜你,梅露露酱仅用${timeStr}就结束了比赛！\n大魔女十分欣慰(`),
+        200,
+      );
     }
   }
 
-  function verify(){
-    return !blocks.find(
-      (pos, i) => pos.y * size + pos.x !== i,
-    );
+  function verify() {
+    return !blocks.find((pos, i) => pos.y * size + pos.x !== i);
   }
 </script>
 
@@ -166,7 +174,7 @@
 <div class="wrapper">
   <BigBorder {size}>
     {#each { length: size * size }, id}
-      <Block {id} {size} {blocks} {showNum} {handleClick} />
+      <Block bind:start {id} {size} {blocks} {showNum} {handleClick} />
     {/each}
   </BigBorder>
   <div class="input">
@@ -177,6 +185,7 @@
     >
     <button onclick={() => shuffle()} disabled={shuffling}>打乱</button>
   </div>
+  <Timer bind:start bind:timeStr time={0}></Timer>
 </div>
 
 <style>
@@ -201,6 +210,11 @@
 
   input {
     width: 2em;
+    font-size: 1em;
+  }
+
+  button {
+    width: 4em;
     font-size: 1em;
   }
 </style>

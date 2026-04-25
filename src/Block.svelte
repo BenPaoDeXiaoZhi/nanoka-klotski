@@ -7,8 +7,16 @@
     blocks: BlocksConfig;
     showNum: boolean;
     handleClick: (id: number) => any;
+    start: boolean;
   };
-  const { id, size, blocks, showNum, handleClick }: Props = $props();
+  let {
+    id,
+    size,
+    blocks,
+    showNum,
+    handleClick,
+    start = $bindable(),
+  }: Props = $props();
   let posX = $derived(blocks[id].x);
   let posY = $derived(blocks[id].y);
   let x = $derived(id % size);
@@ -31,6 +39,7 @@
   class="block"
   onclick={() => {
     if (empty) return;
+    if (!start) start = true;
     handleClick(id);
   }}
   style:width="{30 / size}em"
