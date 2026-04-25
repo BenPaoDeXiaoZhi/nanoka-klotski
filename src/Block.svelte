@@ -19,8 +19,8 @@
 <div
   class="out"
   style:width="{30 / size}em"
-  style:top="{y * 30 / size}em"
-  style:left="{x * 30 / size}em"
+  style:top="{(y * 30) / size}em"
+  style:left="{(x * 30) / size}em"
 >
   <div class="container">
     <div class="hole"></div>
@@ -34,27 +34,25 @@
     handleClick(id);
   }}
   style:width="{30 / size}em"
-  style:top="{posY * 30 / size}em"
-  style:left="{posX * 30 / size}em"
+  style:top="{(posY * 30) / size}em"
+  style:left="{(posX * 30) / size}em"
 >
-  <div 
+  <div
     class="container"
     style:box-shadow={empty ? "none" : "2px 2px 0.3em rgb(181, 181, 181)"}
   >
-  {#if empty}
-    
-  {:else}
-    <div
-      class="img"
-      style:top="{(-y * 30) / size}em"
-      style:left="{(-x * 30) / size}em"
-    >
-      <img src="./nanoka.png" alt="nnk" />
-    </div>
-    {#if showNum}
-      <b style:font-size="{12/size}em">{id + 1}</b>
+    {#if !empty}
+      <div
+        class="img"
+        style:top="{(-y * 30) / size}em"
+        style:left="{(-x * 30) / size}em"
+      >
+        <img src="./nanoka.png" alt="nnk" />
+      </div>
+      {#if showNum}
+        <b style:font-size="{12 / size}em">{id + 1}</b>
+      {/if}
     {/if}
-  {/if}
   </div>
 </button>
 
@@ -104,6 +102,8 @@
   img {
     width: 30em;
     aspect-ratio: 1;
+    user-select: none;
+    -webkit-user-drag: none;
   }
 
   b {

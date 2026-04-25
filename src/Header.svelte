@@ -4,9 +4,11 @@
 <style>
   h2 {
     margin-left: 1em;
+    font-size: 4em;
+    height: 1.5em;
   }
   div {
     margin-left: 1em;
-    font-size: 0.5rem;
+    font-size: 1em;
   }
 </style>
