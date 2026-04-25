@@ -157,7 +157,7 @@
 
   function verify(){
     return !blocks.find(
-      (pos, i) => pos.y * size + pos.x == i,
+      (pos, i) => pos.y * size + pos.x !== i,
     );
   }
 </script>
