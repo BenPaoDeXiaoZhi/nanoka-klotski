@@ -84,7 +84,6 @@
     const { x: srcX, y: srcY } = blockPos;
     const { x: dstX, y: dstY } = blocks[size * size - 1];
     let n = 1;
-    console.group(`将${id + 1}(${srcX}, ${srcY})向(${dstX}, ${dstY})移动`);
     while (1) {
       const prevX = fn(dstX, srcX, n - 1);
       const prevY = fn(dstY, srcY, n - 1);
@@ -97,7 +96,6 @@
         break;
       }
     }
-    console.groupEnd();
     blocks = Array.from(blocks);
   }
 
@@ -152,7 +150,15 @@
       move(id);
       blocks = Array.from(blocks); // make derived update
     }
-    console.log(blocks);
+    if(verify){
+      alert("已复原");
+    }
+  }
+
+  function verify(){
+    return !blocks.find(
+      (pos, i) => pos.y * size + pos.x == i;
+    );
   }
 </script>
 
