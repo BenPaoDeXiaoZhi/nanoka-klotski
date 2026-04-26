@@ -11,7 +11,7 @@
   function interval(
     times: number,
     delay: number,
-    func: (i?: number) => any,
+    func: (i: number) => any,
     end = () => {},
   ) {
     let i = 0;
