@@ -11,13 +11,13 @@
   function interval(
     times: number,
     delay: number,
-    func: Function,
+    func: (i: number) => any,
     end = () => {},
   ) {
     let i = 0;
     if (delay == 0) {
       while (1) {
-        func();
+        func(i);
         if (i++ == times) {
           end();
           return;
@@ -112,9 +112,10 @@
     interval(
       times,
       delay,
-      () => {
+      (i) => {
         const { x, y } = blocks[size * size - 1];
-        const moveDir = randInt(0, 1);
+        // const moveDir = randInt(0, 1);
+        const moveDir = i % 2;
         let movePos: Pos = { x, y };
         while (1) {
           if (moveDir == 0) {
