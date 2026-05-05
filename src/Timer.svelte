@@ -41,18 +41,8 @@
   timeStr = `00:00:00.000`;
 </script>
 
-<div>
+<div
+  class="bg-gray-200 border border-gray-400 p-2 rounded-md text-center text-xl h-fit"
+>
   {timeStr}
 </div>
-
-<style>
-  div {
-    background-color: #e0e2e4;
-    border: 1px #abacad solid;
-    border-radius: 1em;
-    padding: 0.5em;
-    text-align: center;
-    font-size: 1.5em;
-    height: fit-content;
-  }
-</style>

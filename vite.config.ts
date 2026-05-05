@@ -1,11 +1,16 @@
-import { defineConfig } from 'vite'
-import { svelte } from '@sveltejs/vite-plugin-svelte'
+import { defineConfig } from "vite";
+import { svelte } from "@sveltejs/vite-plugin-svelte";
+import tailwindcss from "@tailwindcss/vite";
+import path from "path";
 
 // https://vite.dev/config/
 export default defineConfig({
   base: "./",
-  plugins: [svelte()],
-  build:{
-    sourcemap: true,
+  plugins: [tailwindcss(), svelte()],
+  build: { sourcemap: true },
+  resolve: {
+    alias: {
+      $lib: path.resolve("./src/lib"),
+    },
   },
-})
+});

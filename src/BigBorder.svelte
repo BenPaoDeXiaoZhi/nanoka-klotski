@@ -8,21 +8,10 @@
   const { children, size }: Props = $props();
 </script>
 
-<div class="out">
-  <div style="position:relative;">
+<div
+  class="size-[31em] border-0 rounded-md bg-gray-200 p-[0.5em] relative top-0 left-0 shrink-0"
+>
+  <div class="relative">
     {@render children()}
   </div>
 </div>
-
-<style>
-  .out {
-    width: 30em;
-    height: 30em;
-    border-radius: 0.5em;
-    background-color: #e0e2e4;
-    padding: 0.5em;
-    position: relative;
-    top: 0px;
-    left: 0px;
-  }
-</style>

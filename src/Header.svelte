@@ -1,14 +1,5 @@
-<h2>奈叶香华容道</h2>
-<div>一起cos梅露露吧😀</div>
+<h2 class="ml-4 text-4xl">奈叶香华容道</h2>
+<div class="ml-1 text-sm">一起cos梅露露吧😀</div>
 
 <style>
-  h2 {
-    margin-left: 1em;
-    font-size: 4em;
-    height: 1.5em;
-  }
-  div {
-    margin-left: 1em;
-    font-size: 1em;
-  }
 </style>

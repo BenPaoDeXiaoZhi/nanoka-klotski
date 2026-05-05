@@ -25,101 +25,57 @@
 </script>
 
 <div
-  class="out"
+  class="aspect-square absolute"
   style:width="{30 / size}em"
   style:top="{(y * 30) / size}em"
   style:left="{(x * 30) / size}em"
 >
-  <div class="container">
-    <div class="hole"></div>
+  <div
+    class="relative aspect-square w-[90%] overflow-hidden m-[5%]"
+    style:border-radius="{3 / size}em"
+  >
+    <div class="bg-gray-300 z-2 shadow-inset-md size-full"></div>
   </div>
 </div>
 
-<button
-  class="block"
-  onclick={() => {
-    if (empty) return;
-    if (!start) start = true;
-    handleClick(id);
-  }}
-  style:width="{30 / size}em"
-  style:top="{(posY * 30) / size}em"
-  style:left="{(posX * 30) / size}em"
->
-  <div
-    class="container"
-    style:box-shadow={empty ? "none" : "2px 2px 0.3em rgb(181, 181, 181)"}
+{#if !empty}
+  <button
+    class="absolute aspect-square border-0 text-[1em] duration-100 z-3 m-0"
+    onclick={() => {
+      if (empty) return;
+      handleClick(id);
+    }}
+    style:width="{30 / size}em"
+    style:top="{(posY * 30) / size}em"
+    style:left="{(posX * 30) / size}em"
   >
-    {#if !empty}
+    <div
+      class="relative aspect-square w-[90%] overflow-hidden m-[5%] shadow-md"
+      style:border-radius="{3 / size}em"
+    >
       <div
-        class="img"
+        class="absolute aspect-square border-0 text-[1em]"
         style:top="{(-y * 30) / size}em"
         style:left="{(-x * 30) / size}em"
       >
-        <img src="./nanoka.png" alt="nnk" />
+        <img
+          class="absolute size-[30em] aspect-square max-w-none select-none"
+          src="./nanoka.png"
+          alt="nnk"
+        />
       </div>
       {#if showNum}
-        <b style:font-size="{12 / size}em">{id + 1}</b>
+        <b
+          class="absolute top-[-.25em] left-0 text-white z-5 font-sans"
+          style:font-size="{12 / size}em">{id + 1}</b
+        >
       {/if}
-    {/if}
-  </div>
-</button>
+    </div>
+  </button>
+{/if}
 
 <style>
-  div.out {
-    position: absolute;
-    padding: 0em;
-    aspect-ratio: 1;
-  }
-
-  div.hole {
-    position: absolute;
-    width: 100%;
-    aspect-ratio: 1;
-    border-radius: 10%;
-    background-color: #b1b1b1;
-    box-shadow: inset 1px 1px 0.5em 0px rgb(97, 97, 97);
-    z-index: 2;
-  }
-
-  button.block {
-    position: absolute;
-    aspect-ratio: 1;
-    border: none;
-    font-size: 1em;
-    transition: 0.1s;
-    background-color: transparent;
-    z-index: 3;
-    padding: 0em;
-  }
-
-  .container {
-    aspect-ratio: 1;
-    width: 90%;
-    border-radius: 10%;
-    overflow: hidden;
-    position: relative;
-    margin: 5%;
-  }
-
-  div.img {
-    width: 100%;
-    aspect-ratio: 1;
-    position: absolute;
-  }
-
   img {
-    width: 30em;
-    aspect-ratio: 1;
-    user-select: none;
     -webkit-user-drag: none;
-  }
-
-  b {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    z-index: 5;
-    color: white;
   }
 </style>
