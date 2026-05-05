@@ -1,5 +1,5 @@
 {
-  "files": [],
+  "files": ["./src/main.ts"],
   "references": [],
   "compilerOptions": {
     "lib": ["ESNext", "DOM"],
