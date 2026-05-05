@@ -1,12 +1,16 @@
 {
-  "files": ["./src/main.ts"],
-  "references": [],
   "compilerOptions": {
     "lib": ["ESNext", "DOM"],
     "paths": {
       "$lib": ["./src/lib"],
       "$lib/*": ["./src/lib/*"]
-    }
+    },
+    "noEmit": true,
+    "allowJs": true,
+    "checkJs": true,
+    "moduleDetection": "force",
+    "skipLibCheck": true
   },
-  "include": ["./src/**/*"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "src/lib/**/*"]
 }
