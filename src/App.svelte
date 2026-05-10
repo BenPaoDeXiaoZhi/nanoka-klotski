@@ -194,7 +194,7 @@
       blocks = Array.from(blocks); // make derived update
     }
 
-    if (verify()) {
+    if (checkIsWin()) {
       start = false;
       setTimeout(
         () =>
@@ -204,7 +204,7 @@
     }
   }
 
-  function verify() {
+  function checkIsWin() {
     return !blocks.find((pos, i) => pos.y * size + pos.x !== i);
   }
 </script>
