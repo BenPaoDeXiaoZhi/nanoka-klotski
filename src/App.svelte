@@ -45,12 +45,14 @@
   import Block from "./Block.svelte";
   import Timer from "./Timer.svelte";
   import Button from "$lib/components/ui/button/button.svelte";
+  import * as AlertDialog from "$lib/components/ui/alert-dialog";
   import Label from "$lib/components/ui/label/label.svelte";
   import Input from "$lib/components/ui/input/input.svelte";
   import Switch from "$lib/components/ui/switch/switch.svelte";
 
   let size = $state(3);
   let showNum = $state(false);
+  let showWinDialog = $state(false);
   let showShuffle = $state(false);
   let shuffling = $derived(false);
   let start = $derived(false);
@@ -196,11 +198,7 @@
 
     if (checkIsWin()) {
       start = false;
-      setTimeout(
-        () =>
-          alert(`恭喜你,梅露露酱仅用${timeStr}就结束了比赛！\n大魔女十分欣慰(`),
-        200,
-      );
+      showWinDialog = true;
     }
   }
 
@@ -219,19 +217,19 @@
   </BigBorder>
 
   <div class="flex flex-col m-1 gap-1 w-40">
-    <Label>
+    <Label class="text-nowrap">
       大小
       <Input type="number" bind:value={size} class="w-max" />
     </Label>
 
     <Label>
       显示数字
-      <Switch bind:checked={showNum} />
+      <Switch bind:checked={showNum} class="ml-auto mr-0" />
     </Label>
 
     <Label>
       显示打乱过程
-      <Switch bind:checked={showShuffle} />
+      <Switch bind:checked={showShuffle} class="ml-auto mr-0" />
     </Label>
 
     <Button
@@ -245,11 +243,28 @@
   </div>
 
   <Timer bind:start bind:timeStr time={0} />
+
+  <AlertDialog.Root bind:open={showWinDialog}>
+    <AlertDialog.Content>
+      <AlertDialog.Header class="m-auto">胜利!</AlertDialog.Header>
+      <AlertDialog.Description>
+        梅露露酱仅用{timeStr}就结束了比赛!<br />大魔女十分欣慰~
+      </AlertDialog.Description>
+      <AlertDialog.Footer>
+        <AlertDialog.Action
+          onclick={() => (showWinDialog = false)}
+          class="m-auto w-sm"
+        >
+          继续
+        </AlertDialog.Action>
+      </AlertDialog.Footer>
+    </AlertDialog.Content>
+  </AlertDialog.Root>
 </div>
 
 <style lang="postcss">
   @reference "tailwindcss";
   :global(#app) {
-    font-size: calc(min(3.35vw, 2.4vh));
+    font-size: calc(min(3.14vw, 2.4vh));
   }
 </style>
