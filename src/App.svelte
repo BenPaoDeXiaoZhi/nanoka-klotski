@@ -135,7 +135,7 @@
 
     console.log(`将进行${times}次打乱`);
 
-    const delay = showShuffle ? 10 : 0;
+    const delay = showShuffle ? 20 : 0;
 
     interval(
       times,
@@ -212,7 +212,15 @@
 <div class="container flex flex-wrap select-none m-1 max-w-max">
   <BigBorder {size}>
     {#each { length: size * size }, id}
-      <Block bind:start {id} {size} {blocks} {showNum} {handleClick} />
+      <Block
+        bind:start
+        {id}
+        {size}
+        {blocks}
+        {showNum}
+        {handleClick}
+        {shuffling}
+      />
     {/each}
   </BigBorder>
 
@@ -229,7 +237,11 @@
 
     <Label>
       显示打乱过程
-      <Switch bind:checked={showShuffle} class="ml-auto mr-0" />
+      <Switch
+        bind:checked={showShuffle}
+        class="ml-auto mr-0"
+        disabled={shuffling}
+      />
     </Label>
 
     <Button
