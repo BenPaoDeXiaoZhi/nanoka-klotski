@@ -52,18 +52,10 @@
     <div
       class="relative aspect-square w-[90%] overflow-hidden m-[5%] shadow-md"
       style:border-radius="{3 / size}em"
+      style:background="url('./nanoka.png')"
+      style:background-position="{(-x * 30) / size}em {(-y * 30) / size}em"
+      style:background-size="30em"
     >
-      <div
-        class="absolute aspect-square border-0 text-[1em]"
-        style:top="{(-y * 30) / size}em"
-        style:left="{(-x * 30) / size}em"
-      >
-        <img
-          class="absolute size-[30em] aspect-square max-w-none select-none"
-          src="./nanoka.png"
-          alt="nnk"
-        />
-      </div>
       {#if showNum}
         <b
           class="absolute top-[-.25em] left-0 text-white z-5 font-sans"
@@ -73,9 +65,3 @@
     </div>
   </button>
 {/if}
-
-<style>
-  img {
-    -webkit-user-drag: none;
-  }
-</style>
