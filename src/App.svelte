@@ -57,16 +57,18 @@
   let shuffling = $derived(false);
   let start = $derived(false);
   let timeStr = $state("");
+  let posToId = $state(new Map<string, number>());
 
   let blocks = $derived.by(() => {
     const obj: BlocksConfig = [];
-
+    posToId.clear();
     for (let x = 0; x < size; x++) {
       for (let y = 0; y < size; y++) {
-        obj[y * size + x] = { x, y };
+        const id = y * size + x;
+        obj[id] = { x, y };
+        posToId.set(`${x},${y}`, id);
       }
     }
-
     return obj;
   });
 
@@ -76,13 +78,11 @@
 
   function getId(pos: Pos) {
     const { x, y } = pos;
-
-    return blocks.findIndex((b) => b.x == x && b.y == y) ?? -1;
+    return posToId.get(`${x},${y}`) ?? -1;
   }
 
   function sameLine(pos: Pos) {
     const { x, y } = pos;
-
     return blocks[size * size - 1].x == x || blocks[size * size - 1].y == y;
   }
 
@@ -115,9 +115,11 @@
       const currentId = getId({ x: currentX, y: currentY });
 
       blocks[currentId] = { x: prevX, y: prevY };
+      posToId.set(`${prevX},${prevY}`, currentId);
 
       if (currentY == srcY && currentX == srcX) {
         blocks[size * size - 1] = { x: srcX, y: srcY };
+        posToId.set(`${srcX},${srcY}`, -1);
 
         break;
       }
