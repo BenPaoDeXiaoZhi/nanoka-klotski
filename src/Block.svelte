@@ -48,6 +48,7 @@
     style:width="{30 / size}em"
     style:top="{(posY * 30) / size}em"
     style:left="{(posX * 30) / size}em"
+    style:transition-property={start ? "top, left" : "none"}
   >
     <div
       class="relative aspect-square w-[90%] overflow-hidden m-[5%] shadow-md"
