@@ -267,7 +267,7 @@
       <AlertDialog.Footer>
         <AlertDialog.Action
           onclick={() => (showWinDialog = false)}
-          class="m-auto w-sm"
+          class="m-auto"
         >
           继续
         </AlertDialog.Action>
