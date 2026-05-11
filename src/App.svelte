@@ -59,17 +59,18 @@
   let timeStr = $state("");
   let posToId = $state(new Map<string, number>());
 
-  let blocks = $derived.by(() => {
-    const obj: BlocksConfig = [];
+  let blocks: BlocksConfig = $state([]);
+  $effect(() => {
+    const cfg: BlocksConfig = [];
     posToId.clear();
     for (let x = 0; x < size; x++) {
       for (let y = 0; y < size; y++) {
         const id = y * size + x;
-        obj[id] = { x, y };
+        cfg[id] = { x, y };
         posToId.set(`${x},${y}`, id);
       }
     }
-    return obj;
+    blocks = cfg;
   });
 
   function getBlock(id: number) {
@@ -124,8 +125,6 @@
         break;
       }
     }
-
-    blocks = Array.from(blocks);
   }
 
   function shuffle() {
@@ -195,7 +194,6 @@
     if (sameLine(blockPos)) {
       if (!start) start = true;
       move(id);
-      blocks = Array.from(blocks); // make derived update
     }
 
     if (checkIsWin()) {
@@ -205,7 +203,12 @@
   }
 
   function checkIsWin() {
-    return !blocks.find((pos, i) => pos.y * size + pos.x !== i);
+    const empty = blocks[size * size-1];
+    return (
+      empty.x == size - 1 && 
+      empty.y == size - 1 && 
+      !blocks.find((pos, i) => pos.y * size + pos.x !== i)
+    );
   }
 </script>
 
