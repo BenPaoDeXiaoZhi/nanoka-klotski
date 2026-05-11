@@ -70,6 +70,8 @@
         posToId.set(`${x},${y}`, id);
       }
     }
+    cfg[size*size-1] = { x: size, y: size };
+    posToId.set(`${size - 1},${size - 1}`, -1);
     console.log("resize", cfg)
     blocks = cfg;
   }
