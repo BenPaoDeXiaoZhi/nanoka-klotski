@@ -48,7 +48,7 @@
       handleClick(id);
     }}
     style:width="{30 / size}em"
-    style:transform="translate({(posX * 30) / size}em, {(posX * 30) / size}em)"
+    style:transform="translate({(posX * 30) / size}em, {(posY * 30) / size}em)"
     style:transition-property={start || shuffling ? "transform" : "none"}
   >
     <div
