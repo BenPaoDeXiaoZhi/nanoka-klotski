@@ -75,10 +75,9 @@
     console.log("resize", cfg)
     blocks = cfg;
   }
-  $effect(() => {
+  $effect.pre(() => {
     resize();
   });
-  resize();
 
   function getBlock(id: number) {
     return blocks[id];
