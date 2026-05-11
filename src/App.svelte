@@ -60,7 +60,7 @@
   let posToId = $state(new Map<string, number>());
 
   let blocks: BlocksConfig = $state([]);
-  $effect(() => {
+  function resize(){
     const cfg: BlocksConfig = [];
     posToId.clear();
     for (let x = 0; x < size; x++) {
@@ -71,7 +71,11 @@
       }
     }
     blocks = cfg;
+  }
+  $effect(() => {
+    resize();
   });
+  resize();
 
   function getBlock(id: number) {
     return blocks[id];
