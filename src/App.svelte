@@ -70,6 +70,7 @@
         posToId.set(`${x},${y}`, id);
       }
     }
+    console.log("resize", cfg)
     blocks = cfg;
   }
   $effect(() => {
