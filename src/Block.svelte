@@ -42,15 +42,14 @@
 
 {#if !empty}
   <button
-    class="absolute aspect-square border-0 text-[1em] duration-100 z-3 m-0"
+    class="absolute aspect-square border-0 text-[1em] duration-100 z-3 m-0 will-change-transform"
     onclick={() => {
       if (empty) return;
       handleClick(id);
     }}
     style:width="{30 / size}em"
-    style:top="{(posY * 30) / size}em"
-    style:left="{(posX * 30) / size}em"
-    style:transition-property={start || shuffling ? "top, left" : "none"}
+    style:transform="translate({(posX * 30) / size}em, {(posX * 30) / size}em)"
+    style:transition-property={start || shuffling ? "transform" : "none"}
   >
     <div
       class="relative aspect-square w-[90%] overflow-hidden m-[5%] shadow-md"
