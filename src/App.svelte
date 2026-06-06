@@ -149,7 +149,7 @@
     }
   }
 
-  function shuffle() {
+  function shuffle(onDone?: () => void) {
     shuffling = true;
     start = false;
     timeStr = "00:00:00.000";
@@ -187,7 +187,7 @@
       () => {
         resetEmpty();
         shuffling = false;
-        if (challengeMode) start = true;
+        onDone?.();
       },
     );
   }
@@ -205,12 +205,18 @@
     showFailDialog = false;
     showWinDialog = false;
     start = false;
-    shuffle();
+    shuffle(() => { start = true; });
   }
 
   function handleDifficultyChange(d: "easy" | "medium" | "hard") {
     difficulty = d;
-    if (challengeMode) startChallenge();
+    if (challengeMode) {
+      const diff = DIFFICULTIES[difficulty];
+      size = diff.size;
+      showFailDialog = false;
+      showWinDialog = false;
+      shuffle();
+    }
   }
 
   function resetEmpty() {
