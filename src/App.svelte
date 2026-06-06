@@ -302,11 +302,6 @@
       </Label>
 
       <Label>
-        显示数字
-        <Switch bind:checked={showNum} class="ml-auto mr-0" />
-      </Label>
-
-      <Label>
         显示打乱过程
         <Switch
           bind:checked={showShuffle}
@@ -315,6 +310,11 @@
         />
       </Label>
     {/if}
+
+    <Label>
+      显示数字
+      <Switch bind:checked={showNum} class="ml-auto mr-0" />
+    </Label>
 
     <Button
       variant="outline"
