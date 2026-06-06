@@ -342,7 +342,7 @@
       </AlertDialog.Header>
       <AlertDialog.Description>
         {#if challengeMode}
-          梅露露酱仅用{remainingTimeStr}的时间就在难度「{DIFFICULTIES[difficulty].label}」下完成了挑战!
+           梅露露酱在还剩{remainingTimeStr}的时候就在难度「{DIFFICULTIES[difficulty].label}」下通关了!
         {:else}
           梅露露酱仅用{timeStr}就结束了比赛!
         {/if}
