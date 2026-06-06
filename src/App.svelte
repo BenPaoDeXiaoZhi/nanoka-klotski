@@ -56,7 +56,7 @@
   let showShuffle = $state(false);
   let shuffling = $derived(false);
   let start = $derived(false);
-  let timeStr = $state("");
+  let timeStr = $state("00:00:00.000");
   let posToId = $state(new Map<string, number>());
 
   // 挑战模式

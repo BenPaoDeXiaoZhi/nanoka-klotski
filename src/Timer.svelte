@@ -30,6 +30,8 @@
       if (start) {
         time = Date.now() - startTime;
 
+        timeStr = `${hour}:${minute}:${second}.${millSecond}`;
+
         if (type === "countdown" && time >= timeLimit) {
           start = false;
           time = timeLimit;
