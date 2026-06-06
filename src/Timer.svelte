@@ -10,7 +10,7 @@
   let {
     start = $bindable(false),
     time = $bindable(0),
-    timeStr = $bindable(""),
+    timeStr = $bindable("00:00:00.000"),
   }: Props = $props();
   let startTime = $state(Date.now());
   $effect(() => {

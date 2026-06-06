@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
 import tailwindcss from "@tailwindcss/vite";
-import path from "path";
+import { fileURLToPath, URL } from "node:url";
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -10,7 +10,7 @@ export default defineConfig({
   build: { sourcemap: true },
   resolve: {
     alias: {
-      $lib: path.resolve("./src/lib"),
+      $lib: fileURLToPath(new URL("./src/lib", import.meta.url)),
     },
   },
 });

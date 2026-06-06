@@ -108,8 +108,6 @@
     const blockPos = getBlock(id);
 
     if (!sameLine(blockPos)) {
-      console.error("err pos");
-
       return;
     }
 
@@ -153,7 +151,6 @@
       (i) => {
         const { x, y } = blocks[size * size - 1];
 
-        // const moveDir = randInt(0, 1);
         const moveDir = i % 2;
 
         let movePos: Pos = { x, y };
