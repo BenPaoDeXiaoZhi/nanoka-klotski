@@ -200,8 +200,8 @@
   function startChallenge() {
     const diff = DIFFICULTIES[difficulty];
     size = diff.size;
+    resize();
     showShuffle = false;
-    showNum = false;
     showFailDialog = false;
     showWinDialog = false;
     start = false;
@@ -213,6 +213,7 @@
     if (challengeMode) {
       const diff = DIFFICULTIES[difficulty];
       size = diff.size;
+      resize();
       showFailDialog = false;
       showWinDialog = false;
       shuffle();
