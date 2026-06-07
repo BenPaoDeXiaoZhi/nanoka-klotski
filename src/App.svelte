@@ -294,8 +294,9 @@
       <div class="flex gap-1">
         {#each Object.entries(DIFFICULTIES) as [key, diff]}
           <button
-            class="px-2 py-1 rounded text-sm cursor-pointer {difficulty === key ? 'bg-primary text-primary-foreground' : 'bg-gray-200 hover:bg-gray-300'}"
+            class="px-2 py-1 rounded text-sm cursor-pointer disabled:cursor-not-allowed disabled:opacity-40 {difficulty === key ? 'bg-primary text-primary-foreground' : 'bg-gray-200 hover:bg-gray-300'}"
             onclick={() => handleDifficultyChange(key as 'easy' | 'medium' | 'hard')}
+            disabled={start}
           >
             {diff.label}
           </button>
@@ -325,10 +326,18 @@
     <Button
       variant="outline"
       class="bg-gray-200 hover:bg-gray-300 border-gray-400 "
-      onclick={() => (challengeMode ? startChallenge() : shuffle())}
+      onclick={() => {
+        if (challengeMode && start) {
+          start = false;
+        } else if (challengeMode) {
+          startChallenge();
+        } else {
+          shuffle();
+        }
+      }}
       disabled={shuffling}
     >
-      {challengeMode ? "开始挑战" : "打乱"}
+      {challengeMode && start ? "暂停" : challengeMode ? "开始挑战" : "打乱"}
     </Button>
   </div>
 
