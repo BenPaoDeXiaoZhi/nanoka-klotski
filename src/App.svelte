@@ -56,8 +56,23 @@
   let showShuffle = $state(false);
   let shuffling = $derived(false);
   let start = $derived(false);
-  let timeStr = $state("");
+  let timeStr = $state("00:00:00.000");
   let posToId = $state(new Map<string, number>());
+
+  // 挑战模式
+  let challengeMode = $state(false);
+  let difficulty = $state<"easy" | "medium" | "hard">("easy");
+  let showFailDialog = $state(false);
+  let challengeTime = $state(0);
+  let remainingTimeStr = $state("");
+
+  const DIFFICULTIES = {
+    easy: { label: "简单", size: 3, timeLimit: 60_000 },
+    medium: { label: "中等", size: 4, timeLimit: 120_000 },
+    hard: { label: "困难", size: 5, timeLimit: 300_000 },
+  };
+
+  let timeLimit = $derived(DIFFICULTIES[difficulty].timeLimit);
 
   let blocks: BlocksConfig = $state([]);
   function resize(){
@@ -108,8 +123,6 @@
     const blockPos = getBlock(id);
 
     if (!sameLine(blockPos)) {
-      console.error("err pos");
-
       return;
     }
 
@@ -136,14 +149,12 @@
     }
   }
 
-  function shuffle() {
+  function shuffle(onDone?: () => void) {
     shuffling = true;
     start = false;
     timeStr = "00:00:00.000";
 
     const times = size * size * randInt(1, 10);
-
-    console.log(`将进行${times}次打乱`);
 
     const delay = showShuffle ? 20 : 0;
 
@@ -153,7 +164,6 @@
       (i) => {
         const { x, y } = blocks[size * size - 1];
 
-        // const moveDir = randInt(0, 1);
         const moveDir = i % 2;
 
         let movePos: Pos = { x, y };
@@ -177,8 +187,36 @@
       () => {
         resetEmpty();
         shuffling = false;
+        onDone?.();
       },
     );
+  }
+
+  function onChallengeTimeUp() {
+    start = false;
+    showFailDialog = true;
+  }
+
+  function startChallenge() {
+    const diff = DIFFICULTIES[difficulty];
+    size = diff.size;
+    resize();
+    showShuffle = false;
+    showFailDialog = false;
+    showWinDialog = false;
+    start = false;
+    shuffle(() => { start = true; });
+  }
+
+  function handleDifficultyChange(d: "easy" | "medium" | "hard") {
+    difficulty = d;
+    if (challengeMode) {
+      const diff = DIFFICULTIES[difficulty];
+      size = diff.size;
+      resize();
+      showFailDialog = false;
+      showWinDialog = false;
+    }
   }
 
   function resetEmpty() {
@@ -207,6 +245,14 @@
 
     if (checkIsWin()) {
       start = false;
+      if (challengeMode) {
+        const remaining = Math.max(0, timeLimit - challengeTime);
+        const h = String(Math.floor(remaining / 3600000)).padStart(2, "0");
+        const m = String(Math.floor((remaining / 60000) % 60)).padStart(2, "0");
+        const s = String(Math.floor((remaining / 1000) % 60)).padStart(2, "0");
+        const ms = String(Math.floor(remaining % 1000)).padStart(3, "0");
+        remainingTimeStr = `${h}:${m}:${s}.${ms}`;
+      }
       showWinDialog = true;
     }
   }
@@ -239,42 +285,83 @@
   </BigBorder>
 
   <div class="flex flex-col m-1 gap-1 w-40">
-    <Label class="text-nowrap">
-      大小
-      <Input type="number" bind:value={size} class="w-max" />
+    <Label>
+      挑战模式
+      <Switch bind:checked={challengeMode} class="ml-auto mr-0" disabled={start} />
     </Label>
+
+    {#if challengeMode}
+      <div class="flex gap-1">
+        {#each Object.entries(DIFFICULTIES) as [key, diff]}
+          <button
+            class="px-2 py-1 rounded text-sm cursor-pointer disabled:cursor-not-allowed disabled:opacity-40 {difficulty === key ? 'bg-primary text-primary-foreground' : 'bg-gray-200 hover:bg-gray-300'}"
+            onclick={() => handleDifficultyChange(key as 'easy' | 'medium' | 'hard')}
+            disabled={start}
+          >
+            {diff.label}
+          </button>
+        {/each}
+      </div>
+    {:else}
+      <Label class="text-nowrap">
+        大小
+        <Input type="number" bind:value={size} class="w-max" />
+      </Label>
+
+      <Label>
+        显示打乱过程
+        <Switch
+          bind:checked={showShuffle}
+          class="ml-auto mr-0"
+          disabled={shuffling}
+        />
+      </Label>
+    {/if}
 
     <Label>
       显示数字
       <Switch bind:checked={showNum} class="ml-auto mr-0" />
     </Label>
 
-    <Label>
-      显示打乱过程
-      <Switch
-        bind:checked={showShuffle}
-        class="ml-auto mr-0"
-        disabled={shuffling}
-      />
-    </Label>
-
     <Button
       variant="outline"
       class="bg-gray-200 hover:bg-gray-300 border-gray-400 "
-      onclick={() => shuffle()}
+      onclick={() => {
+        if (challengeMode && start) {
+          start = false;
+        } else if (challengeMode) {
+          startChallenge();
+        } else {
+          shuffle();
+        }
+      }}
       disabled={shuffling}
     >
-      打乱
+      {challengeMode && start ? "暂停" : challengeMode ? "开始挑战" : "打乱"}
     </Button>
   </div>
 
-  <Timer bind:start bind:timeStr time={0} />
+  <Timer
+    bind:start
+    bind:timeStr
+    bind:time={challengeTime}
+    type={challengeMode ? "countdown" : "stopwatch"}
+    timeLimit={challengeMode ? timeLimit : 0}
+    onTimeUp={onChallengeTimeUp}
+  />
 
   <AlertDialog.Root bind:open={showWinDialog}>
     <AlertDialog.Content>
-      <AlertDialog.Header class="m-auto">胜利!</AlertDialog.Header>
+      <AlertDialog.Header class="m-auto">
+        {challengeMode ? "挑战成功!" : "胜利!"}
+      </AlertDialog.Header>
       <AlertDialog.Description>
-        梅露露酱仅用{timeStr}就结束了比赛!<br />大魔女十分欣慰~
+        {#if challengeMode}
+           梅露露酱在还剩{remainingTimeStr}的时候就在难度「{DIFFICULTIES[difficulty].label}」下通关了!
+        {:else}
+          梅露露酱仅用{timeStr}就结束了比赛!
+        {/if}
+        <br />大魔女十分欣慰~
       </AlertDialog.Description>
       <AlertDialog.Footer>
         <AlertDialog.Action
@@ -282,6 +369,24 @@
           class="m-auto"
         >
           继续
+        </AlertDialog.Action>
+      </AlertDialog.Footer>
+    </AlertDialog.Content>
+  </AlertDialog.Root>
+
+  <AlertDialog.Root bind:open={showFailDialog}>
+    <AlertDialog.Content>
+      <AlertDialog.Header class="m-auto text-red-600">挑战失败</AlertDialog.Header>
+      <AlertDialog.Description>
+        梅露露酱未能在「{DIFFICULTIES[difficulty].label}」难度规定时间内完成复原<br />
+        不要气馁，再来一次吧!
+      </AlertDialog.Description>
+      <AlertDialog.Footer>
+        <AlertDialog.Action
+          onclick={() => { showFailDialog = false; }}
+          class="m-auto"
+        >
+          确定
         </AlertDialog.Action>
       </AlertDialog.Footer>
     </AlertDialog.Content>
