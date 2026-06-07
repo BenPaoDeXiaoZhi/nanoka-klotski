@@ -50,6 +50,7 @@
     style:width="{30 / size}em"
     style:transform="translate({(posX * 30) / size}em, {(posY * 30) / size}em)"
     style:transition-property={start || shuffling ? "transform" : "none"}
+    style:transition-timing-function="cubic-bezier(0.00, 0.85, 0.43, 1.14)"
   >
     <div
       class="relative aspect-square w-[90%] overflow-hidden m-[5%] shadow-md"
