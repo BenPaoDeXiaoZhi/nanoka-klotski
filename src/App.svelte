@@ -216,7 +216,6 @@
       resize();
       showFailDialog = false;
       showWinDialog = false;
-      shuffle();
     }
   }
 
