@@ -287,7 +287,7 @@
   <div class="flex flex-col m-1 gap-1 w-40">
     <Label>
       挑战模式
-      <Switch bind:checked={challengeMode} class="ml-auto mr-0" />
+      <Switch bind:checked={challengeMode} class="ml-auto mr-0" disabled={start} />
     </Label>
 
     {#if challengeMode}
