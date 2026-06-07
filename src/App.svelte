@@ -383,13 +383,10 @@
       </AlertDialog.Description>
       <AlertDialog.Footer>
         <AlertDialog.Action
-          onclick={() => {
-            showFailDialog = false;
-            startChallenge();
-          }}
+          onclick={() => { showFailDialog = false; }}
           class="m-auto"
         >
-          再来一次
+          确定
         </AlertDialog.Action>
       </AlertDialog.Footer>
     </AlertDialog.Content>
